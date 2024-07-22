@@ -9,8 +9,8 @@ services:
   - type: worker
     name: sidekiq-worker
     env: ruby
-    buildCommand: bundle install
-    startCommand: bundle exec sidekiq -r ./main.rb
+    buildCommand: cat /etc/os-release && bundle install
+    startCommand: cat /etc/os-release && bundle exec sidekiq -r ./main.rb
     autoDeploy: false
     envVars:
       - key: REDIS_URL
@@ -23,8 +23,8 @@ services:
   - type: web
     name: sinatra-web
     env: ruby
-    buildCommand: bundle install
-    startCommand: bundle exec ruby main.rb
+    buildCommand: cat /etc/os-release && bundle install
+    startCommand: cat /etc/os-release && bundle exec ruby main.rb
     autoDeploy: false
     envVars:
       - key: REDIS_URL
