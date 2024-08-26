@@ -8,7 +8,8 @@ services:
   # Let's create our background worker
   - type: worker
     name: sidekiq-worker
-    env: ruby
+    runtime: ruby
+    branch: max/ruby-2.x
     buildCommand: cat /etc/os-release && bundle install
     startCommand: cat /etc/os-release && bundle exec sidekiq -r ./main.rb
     autoDeploy: false
@@ -22,7 +23,8 @@ services:
   # Create the web server hosting sinatra
   - type: web
     name: sinatra-web
-    env: ruby
+    runtime: ruby
+    branch: max/ruby-2.x
     buildCommand: cat /etc/os-release && bundle install
     startCommand: cat /etc/os-release && bundle exec ruby main.rb
     autoDeploy: false
